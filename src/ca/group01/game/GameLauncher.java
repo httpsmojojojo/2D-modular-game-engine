@@ -1,18 +1,17 @@
 package ca.group01.game;
 
-import java.applet.Applet;
+import javax.swing.JPanel;
 import java.awt.BorderLayout;
 
 import javax.swing.JFrame;
 
 @SuppressWarnings("serial")
-public class GameLauncher extends Applet {
+public class GameLauncher extends JPanel {
 
     private static Game game = new Game();
     public static final boolean DEBUG = false;
 
-    @Override
-    public void init() {
+    public GameLauncher() {
         setLayout(new BorderLayout());
         add(game, BorderLayout.CENTER);
         setMaximumSize(Game.DIMENSIONS);
@@ -22,12 +21,10 @@ public class GameLauncher extends Applet {
         game.isApplet = true;
     }
 
-    @Override
     public void start() {
         game.start();
     }
 
-    @Override
     public void stop() {
         game.stop();
     }
@@ -43,7 +40,7 @@ public class GameLauncher extends Applet {
         game.frame.setLayout(new BorderLayout());
 
         game.frame.add(game, BorderLayout.CENTER);
-        game.frame.pack();
+        game.frame.add(new GameLauncher(), BorderLayout.CENTER);
 
         game.frame.setResizable(false);
         game.frame.setLocationRelativeTo(null);
